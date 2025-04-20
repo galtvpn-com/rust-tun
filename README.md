@@ -1,4 +1,4 @@
-TUN interfaces 
+TUN interfaces
 ==============
 [![Crates.io](https://img.shields.io/crates/v/tun2.svg)](https://crates.io/crates/tun2)
 ![tun2](https://docs.rs/tun2/badge.svg)
@@ -119,7 +119,7 @@ pub extern "C" fn start_tun(fd: std::os::raw::c_int) {
     rt.block_on(async {
         let mut cfg = tun2::Configuration::default();
         cfg.raw_fd(fd);
-        #[cfg(target_os = "ios")]
+        #[cfg(any(target_os = "ios", target_os = "tvos"))]
         cfg.platform_config(|p_cfg| {
             p_cfg.packet_information(true);
         });
@@ -134,5 +134,5 @@ pub extern "C" fn start_tun(fd: std::os::raw::c_int) {
 
 Windows
 -----
-You need to copy the [wintun.dll](https://wintun.net/) file which matches your architecture to 
+You need to copy the [wintun.dll](https://wintun.net/) file which matches your architecture to
 the same directory as your executable and run your program as administrator.

@@ -32,9 +32,9 @@ pub mod macos;
 #[cfg(target_os = "macos")]
 pub use self::macos::{create, Device, PlatformConfig};
 
-#[cfg(target_os = "ios")]
+#[cfg(any(target_os = "ios", target_os = "tvos"))]
 pub mod ios;
-#[cfg(target_os = "ios")]
+#[cfg(any(target_os = "ios", target_os = "tvos"))]
 pub use self::ios::{create, Device, PlatformConfig};
 
 #[cfg(target_os = "android")]
